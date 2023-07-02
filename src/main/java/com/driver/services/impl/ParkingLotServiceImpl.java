@@ -9,6 +9,7 @@ import com.driver.transformer.ParkingLotTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -52,7 +53,7 @@ public class ParkingLotServiceImpl implements ParkingLotService {
 
         Optional<ParkingLot> parkingLotOptional = parkingLotRepository1.findById(spot.getParkingLot().getId());
 
-        ParkingLot parkingLot = parkingLotOptional.get();
+        ParkingLot parkingLot = parkingLotOptional.orElseThrow(()-> new NoSuchElementException("spot not found"));
         parkingLot.getSpotList().remove(spot);
 
         parkingLotRepository1.save(parkingLot);
@@ -87,7 +88,7 @@ public class ParkingLotServiceImpl implements ParkingLotService {
     @Override
     public void deleteParkingLot(int parkingLotId) {
         Optional<ParkingLot> parkingLotOptional = parkingLotRepository1.findById(parkingLotId);
-//        ParkingLot parkingLot = parkingLotOptional.orElseThrow(()-> new IllegalArgumentException("Parking Not Found"));
+        ParkingLot parkingLot = parkingLotOptional.orElseThrow(()-> new NoSuchElementException("Parking Not Found"));
 
         parkingLotRepository1.deleteById(parkingLotId);
     }

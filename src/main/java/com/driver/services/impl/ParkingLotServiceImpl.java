@@ -48,15 +48,15 @@ public class ParkingLotServiceImpl implements ParkingLotService {
 
     @Override
     public void deleteSpot(int spotId) {
-        Optional<Spot> spotOptional = spotRepository1.findById(spotId);
-        Spot spot=spotOptional.get();
-
-        Optional<ParkingLot> parkingLotOptional = parkingLotRepository1.findById(spot.getParkingLot().getId());
-
-        ParkingLot parkingLot = parkingLotOptional.orElseThrow(()-> new NoSuchElementException("spot not found"));
-        parkingLot.getSpotList().remove(spot);
-
-        parkingLotRepository1.save(parkingLot);
+//        Optional<Spot> spotOptional = spotRepository1.findById(spotId);
+//        Spot spot=spotOptional.get();
+//
+//        Optional<ParkingLot> parkingLotOptional = parkingLotRepository1.findById(spot.getParkingLot().getId());
+//
+//        ParkingLot parkingLot = parkingLotOptional.orElseThrow(()-> new NoSuchElementException("spot not found"));
+//        parkingLot.getSpotList().remove(spot);
+//
+//        parkingLotRepository1.save(parkingLot);
         spotRepository1.deleteById(spotId);
 
 

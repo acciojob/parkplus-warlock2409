@@ -9,9 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Builder
 public class Spot {
@@ -21,6 +21,15 @@ public class Spot {
     @Enumerated(value = EnumType.STRING)
     SpotType spotType;
     int pricePerHour;
+
+    public boolean getOccupied() {
+        return occupied;
+    }
+
+    public void setOccupied(boolean occupied) {
+        this.occupied = occupied;
+    }
+
     boolean occupied;
 
     @OneToMany(mappedBy = "spot",cascade = CascadeType.ALL)

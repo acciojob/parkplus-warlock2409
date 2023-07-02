@@ -28,6 +28,9 @@ public class PaymentController {
             throw e;
         }catch (PaymentNotValid e){
             throw e;
+        }catch (Exception e) {
+            // Handle any other exceptions
+            throw new Exception("payment failed",e);
         }
 
     }

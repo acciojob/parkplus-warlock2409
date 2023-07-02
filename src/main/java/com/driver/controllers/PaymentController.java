@@ -21,17 +21,27 @@ public class PaymentController {
         //If the amountSent is less than bill, throw "Insufficient Amount" exception, otherwise update payment attributes
         //If the mode contains a string other than "cash", "card", or "upi" (any character in uppercase or lowercase), throw "Payment mode not detected" exception.
         //Note that the reservationId always exists
-        try{
-           Payment payment= paymentService.pay(reservationId,amountSent,mode);
-            return payment;
-        }catch (InsufficentAmountException e){
+//        try{
+//           Payment payment= paymentService.pay(reservationId,amountSent,mode);
+//            return payment;
+//        }catch (InsufficentAmountException e){
+//            throw e;
+//        }catch (PaymentNotValid e){
+//            throw e;
+//        }catch (Exception e) {
+//            // Handle any other exceptions
+//            throw new Exception("payment failed",e);
+//        }
+        try {
+            return paymentService.pay(reservationId, amountSent, mode);
+        } catch (InsufficentAmountException e) {
             throw e;
-        }catch (PaymentNotValid e){
+        } catch (PaymentNotValid e) {
             throw e;
-        }catch (Exception e) {
-            // Handle any other exceptions
-            throw new Exception("payment failed",e);
+        } catch (Exception e) {
+            throw new Exception("Payment failed", e);
         }
+
 
     }
 }

@@ -20,7 +20,7 @@ public class ParkingLotController {
 
 
     @PostMapping("/add")
-    public ResponseEntity<ParkingLot> addParkingLot(@RequestParam String name, @RequestParam String address) {
+    public ResponseEntity<ParkingLot> addParkingLot(@RequestParam String name, @RequestParam String address) throws Exception{
         //add a new parking lot to the database
         ParkingLot parkingLot= parkingLotService.addParkingLot(name,address);
 
@@ -28,33 +28,52 @@ public class ParkingLotController {
     }
 
     @PostMapping("/{parkingLotId}/spot/add")
-    public ResponseEntity<Spot> addSpot(@PathVariable int parkingLotId, @RequestParam Integer numberOfWheels, @RequestParam Integer pricePerHour) {
+    public ResponseEntity<Spot> addSpot(@PathVariable int parkingLotId, @RequestParam Integer numberOfWheels, @RequestParam Integer pricePerHour) throws Exception {
         //create a new spot in the parkingLot with given id
         //the spot type should be the next biggest type in case the number of wheels are not 2 or 4, for 4+ wheels, it is others
+        try{
+            Spot spot = parkingLotService.addSpot(parkingLotId,numberOfWheels,pricePerHour);
+            return new ResponseEntity<>(spot, HttpStatus.CREATED);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
 
-        Spot spot = parkingLotService.addSpot(parkingLotId,numberOfWheels,pricePerHour);
-        return new ResponseEntity<>(spot, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/spot/{spotId}/delete")
-    public ResponseEntity<Void> deleteSpot(@PathVariable int spotId) {
+    public ResponseEntity<Void> deleteSpot(@PathVariable int spotId) throws Exception {
         //delete a spot from given parking lot
-        parkingLotService.deleteSpot(spotId);
-        return new ResponseEntity<>(HttpStatus.OK);
+        try{
+            parkingLotService.deleteSpot(spotId);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
     }
 
     @PutMapping("/{parkingLotId}/spot/{spotId}/update")
-    public ResponseEntity<Spot> updateSpot(@PathVariable int parkingLotId, @PathVariable int spotId, @RequestParam int pricePerHour) {
+    public ResponseEntity<Spot> updateSpot(@PathVariable int parkingLotId, @PathVariable int spotId, @RequestParam int pricePerHour) throws Exception{
         //update the details of a spot
-        Spot spot = parkingLotService.updateSpot(parkingLotId,spotId,pricePerHour);
-        return new ResponseEntity<>(spot, HttpStatus.OK);
+        try{
+            Spot spot = parkingLotService.updateSpot(parkingLotId,spotId,pricePerHour);
+            return new ResponseEntity<>(spot, HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
     }
 
     @DeleteMapping("/{parkingLotId}/delete")
-    public ResponseEntity<Void> deleteParkingLot(@PathVariable int parkingLotId) {
+    public ResponseEntity<Void> deleteParkingLot(@PathVariable int parkingLotId) throws Exception{
         //delete a parkingLot
-        parkingLotService.deleteParkingLot(parkingLotId);
-        return new ResponseEntity<>(HttpStatus.OK);
+        try{
+            parkingLotService.deleteParkingLot(parkingLotId);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
     }
 
 }

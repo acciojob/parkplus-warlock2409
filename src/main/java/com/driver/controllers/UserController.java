@@ -17,7 +17,7 @@ public class UserController {
 
     // Registering a user: The application needs a functionality to register a new user with their name, phone number, and password.
     @PostMapping("/register")
-    public ResponseEntity<Void> registerUser(@RequestParam String name, @RequestParam String phoneNumber, @RequestParam String password)throws Exception {
+    public ResponseEntity<Void> registerUser(@RequestParam String name, @RequestParam String phoneNumber, @RequestParam String password){
         userService.register(name,phoneNumber,password);
         return new ResponseEntity<>(HttpStatus.OK);
 //        try{
@@ -32,7 +32,7 @@ public class UserController {
 
 //    Updating user password: The application needs a functionality to update the password of an existing user by providing the user's ID and the new password.
     @PutMapping("/update")
-    public ResponseEntity<User> updatePassword(@RequestParam Integer userId, @RequestParam String password) throws Exception {
+    public ResponseEntity<User> updatePassword(@RequestParam Integer userId, @RequestParam String password) {
         User updatedUser = userService.updatePassword(userId,password);
         return new ResponseEntity<>(updatedUser, HttpStatus.OK);
 //        try{
@@ -45,7 +45,7 @@ public class UserController {
     }
 
     @DeleteMapping("/delete")
-    public void deleteUser(@RequestParam Integer userId) throws Exception {
+    public void deleteUser(@RequestParam Integer userId)  {
         userService.deleteUser(userId);
 
 //        try {

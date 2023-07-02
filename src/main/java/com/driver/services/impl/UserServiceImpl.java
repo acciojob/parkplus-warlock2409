@@ -16,7 +16,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserRepository userRepository4;
     @Override
-    public void deleteUser(Integer userId) throws Exception {
+    public void deleteUser(Integer userId) {
         Optional<User> user = userRepository4.findById(userId);
 
         User deleteUser = user.get();

@@ -71,12 +71,13 @@ public class ParkingLotServiceImpl implements ParkingLotService {
 
         for(Spot s : parkingLot.getSpotList()){
             if(s.getId() == spotId){
-                spot=s;
+                s.setPricePerHour(pricePerHour);
+                spot=spotRepository1.save(s);
                 break;
             }
         }
         if(spot != null){
-            spot.setPricePerHour(pricePerHour);
+//            spot.setPricePerHour(pricePerHour);
             parkingLotRepository1.save(parkingLot);
             return spot;
         }else{

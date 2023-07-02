@@ -43,7 +43,7 @@ public class ParkingLotTransformer {
     public static Spot spotToResponseSpotDto(Spot spot1) {
         return Spot.builder()
                 .id(spot1.getId())
-                .occupied(spot1.isOccupied())
+                .occupied(spot1.getOccupied())
                 .reservationList(spot1.getReservationList())
                 .parkingLot(spot1.getParkingLot())
                 .spotType(spot1.getSpotType())

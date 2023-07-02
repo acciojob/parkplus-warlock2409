@@ -46,7 +46,7 @@ public class ReservationServiceImpl implements ReservationService {
         }
 
         for(Spot spot1 : parkingLot.getSpotList()){
-            if(spot1.isOccupied() == false && spot1.getSpotType() == spotType){
+            if(spot1.getOccupied() == false && spot1.getSpotType() == spotType){
                 spot1.setOccupied(true);
                 spot=spot1;
             }

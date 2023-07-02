@@ -18,34 +18,40 @@ public class UserController {
     // Registering a user: The application needs a functionality to register a new user with their name, phone number, and password.
     @PostMapping("/register")
     public ResponseEntity<Void> registerUser(@RequestParam String name, @RequestParam String phoneNumber, @RequestParam String password)throws Exception {
-        try{
-            userService.register(name,phoneNumber,password);
-            return new ResponseEntity<>(HttpStatus.OK);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-
-        }
+        userService.register(name,phoneNumber,password);
+        return new ResponseEntity<>(HttpStatus.OK);
+//        try{
+//            userService.register(name,phoneNumber,password);
+//            return new ResponseEntity<>(HttpStatus.OK);
+//        }catch (Exception e){
+//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//
+//        }
 
     }
 
 //    Updating user password: The application needs a functionality to update the password of an existing user by providing the user's ID and the new password.
     @PutMapping("/update")
     public ResponseEntity<User> updatePassword(@RequestParam Integer userId, @RequestParam String password) throws Exception {
-        try{
-            User updatedUser = userService.updatePassword(userId,password);
-            return new ResponseEntity<>(updatedUser, HttpStatus.OK);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+        User updatedUser = userService.updatePassword(userId,password);
+        return new ResponseEntity<>(updatedUser, HttpStatus.OK);
+//        try{
+//            User updatedUser = userService.updatePassword(userId,password);
+//            return new ResponseEntity<>(updatedUser, HttpStatus.OK);
+//        }catch (Exception e){
+//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//        }
 
     }
 
     @DeleteMapping("/delete")
     public void deleteUser(@RequestParam Integer userId) throws Exception {
-        try {
-            userService.deleteUser(userId);
-        }catch (Exception e){
-          System.out.println(e.getMessage());
-        }
+        userService.deleteUser(userId);
+
+//        try {
+//            userService.deleteUser(userId);
+//        }catch (Exception e){
+//          System.out.println(e.getMessage());
+//        }
     }
 }

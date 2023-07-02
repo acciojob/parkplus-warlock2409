@@ -32,17 +32,17 @@ public class PaymentController {
 //            // Handle any other exceptions
 //            throw new Exception("payment failed",e);
 //        }
-        return paymentService.pay(reservationId, amountSent, mode);
+//        return paymentService.pay(reservationId, amountSent, mode);
 
-//        try {
-//            return paymentService.pay(reservationId, amountSent, mode);
-//        } catch (InsufficentAmountException e) {
-//            throw e;
-//        } catch (PaymentNotValid e) {
-//            throw e;
-//        } catch (Exception e) {
-//            throw new Exception("Payment failed", e);
-//        }
+        try {
+            return paymentService.pay(reservationId, amountSent, mode);
+        } catch (InsufficentAmountException e) {
+            throw e;
+        } catch (PaymentNotValid e) {
+            throw e;
+        } catch (Exception e) {
+            throw new Exception("Payment failed", e);
+        }
 
 
     }

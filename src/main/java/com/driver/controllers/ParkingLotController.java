@@ -33,6 +33,7 @@ public class ParkingLotController {
         //the spot type should be the next biggest type in case the number of wheels are not 2 or 4, for 4+ wheels, it is others
         Spot spot = parkingLotService.addSpot(parkingLotId,numberOfWheels,pricePerHour);
         return new ResponseEntity<>(spot, HttpStatus.CREATED);
+
 //        try{
 //            Spot spot = parkingLotService.addSpot(parkingLotId,numberOfWheels,pricePerHour);
 //            return new ResponseEntity<>(spot, HttpStatus.CREATED);
@@ -47,6 +48,7 @@ public class ParkingLotController {
         //delete a spot from given parking lot
         parkingLotService.deleteSpot(spotId);
         return new ResponseEntity<>(HttpStatus.OK);
+
 //        try{
 //            parkingLotService.deleteSpot(spotId);
 //            return new ResponseEntity<>(HttpStatus.OK);

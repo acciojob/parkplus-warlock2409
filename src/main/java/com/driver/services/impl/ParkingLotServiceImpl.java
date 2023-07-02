@@ -87,7 +87,7 @@ public class ParkingLotServiceImpl implements ParkingLotService {
     @Override
     public void deleteParkingLot(int parkingLotId) {
         Optional<ParkingLot> parkingLotOptional = parkingLotRepository1.findById(parkingLotId);
-        ParkingLot parkingLot = parkingLotOptional.orElseThrow(()-> new IllegalArgumentException("Parking Not Found"));
+//        ParkingLot parkingLot = parkingLotOptional.orElseThrow(()-> new IllegalArgumentException("Parking Not Found"));
 
         parkingLotRepository1.deleteById(parkingLotId);
     }
